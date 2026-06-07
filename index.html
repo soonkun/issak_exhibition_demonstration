@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>AI 이삭이 · 농사 비서</title>
+<link rel="stylesheet" href="light.css"/>
+
+<!-- standalone bundler: assets referenced as strings in JS/JSX (resolved via window.__resources) -->
+<meta name="ext-resource-dependency" content="light/hero_mascot.png" data-resource-id="light/hero_mascot.png" />
+<meta name="ext-resource-dependency" content="light/hero_magnify.png" data-resource-id="light/hero_magnify.png" />
+<meta name="ext-resource-dependency" content="light/hero_machine.png" data-resource-id="light/hero_machine.png" />
+<meta name="ext-resource-dependency" content="light/hero_greenhouse.png" data-resource-id="light/hero_greenhouse.png" />
+<meta name="ext-resource-dependency" content="light/monitor3_f.png" data-resource-id="light/monitor3_f.png" />
+<meta name="ext-resource-dependency" content="light/avatar_face.png" data-resource-id="light/avatar_face.png" />
+<meta name="ext-resource-dependency" content="light/map_field2.png" data-resource-id="light/map_field2.png" />
+<meta name="ext-resource-dependency" content="light/map_greenhouse2.png" data-resource-id="light/map_greenhouse2.png" />
+<meta name="ext-resource-dependency" content="light/map_grid2.png" data-resource-id="light/map_grid2.png" />
+<meta name="ext-resource-dependency" content="light/rec_greenhouse.png" data-resource-id="light/rec_greenhouse.png" />
+<meta name="ext-resource-dependency" content="light/rec_drone.png" data-resource-id="light/rec_drone.png" />
+<meta name="ext-resource-dependency" content="light/thumb_greenhouse2.png" data-resource-id="light/thumb_greenhouse2.png" />
+<meta name="ext-resource-dependency" content="light/thumb_drone2.png" data-resource-id="light/thumb_drone2.png" />
+<meta name="ext-resource-dependency" content="assets/icon_tractor.png" data-resource-id="assets/icon_tractor.png" />
+<meta name="ext-resource-dependency" content="assets/icon_thermo.png" data-resource-id="assets/icon_thermo.png" />
+<meta name="ext-resource-dependency" content="assets/icon_bug.png" data-resource-id="assets/icon_bug.png" />
+<meta name="ext-resource-dependency" content="assets/poster_plow.jpg" data-resource-id="assets/poster_plow.jpg" />
+<meta name="ext-resource-dependency" content="assets/video/1_plow.mp4" data-resource-id="assets/video/1_plow.mp4" />
+<meta name="ext-resource-dependency" content="assets/video/2_greenhouse.mp4" data-resource-id="assets/video/2_greenhouse.mp4" />
+<meta name="ext-resource-dependency" content="assets/video/3_drone.mp4" data-resource-id="assets/video/3_drone.mp4" />
+</head>
+<body>
+<template id="__bundler_thumbnail" data-bg-color="#cdeaf7">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="tg" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#cdeaf7"/><stop offset="1" stop-color="#eaf6ea"/>
+      </linearGradient>
+    </defs>
+    <rect width="1200" height="800" fill="url(#tg)"/>
+    <circle cx="930" cy="210" r="86" fill="#ffd66b"/>
+    <path d="M0,640 C220,560 420,650 640,590 C840,536 1020,620 1200,560 L1200,800 L0,800 Z" fill="#43a86a" opacity="0.42"/>
+    <g transform="translate(600 400)">
+      <ellipse cx="0" cy="58" rx="108" ry="118" fill="#ffffff" stroke="#43a86a" stroke-width="8"/>
+      <path d="M0,-78 C46,-150 116,-150 132,-150 C132,-86 92,-50 18,-50 Z" fill="#5cba7e"/>
+      <circle cx="-34" cy="44" r="11" fill="#2a302b"/><circle cx="38" cy="44" r="11" fill="#2a302b"/>
+      <path d="M-30,86 q30,26 60,0" fill="none" stroke="#2a302b" stroke-width="7" stroke-linecap="round"/>
+      <circle cx="66" cy="70" r="15" fill="#f4a6a0"/>
+    </g>
+    <text x="600" y="720" text-anchor="middle" font-family="sans-serif" font-size="68" font-weight="800" fill="#2f8a52">AI 이삭이</text>
+  </svg>
+</template>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" src="light-shared.jsx"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="light-intro.jsx"></script>
+<script type="text/babel" src="light-home.jsx"></script>
+<script type="text/babel" src="light-coach.jsx"></script>
+<script type="text/babel" src="light-chat.jsx"></script>
+<script type="text/babel" src="light-timejump.jsx"></script>
+<script type="text/babel" src="light-monitor.jsx"></script>
+<script type="text/babel" src="app.jsx"></script>
+
+<script>
+  // fit the 575×1020 exhibition frame to any viewport
+  function fit(){
+    const stage = document.querySelector('.stage');
+    if(!stage) return;
+    const pad = 36;
+    const s = Math.min((window.innerWidth - pad)/575, (window.innerHeight - pad)/1020, 1.25);
+    stage.style.transform = 'scale('+s+')';
+    stage.style.transformOrigin = 'center center';
+  }
+  window.addEventListener('resize', fit);
+  const obs = setInterval(()=>{ if(document.querySelector('.stage')){ fit(); clearInterval(obs);} }, 80);
+</script>
+</body>
+</html>
